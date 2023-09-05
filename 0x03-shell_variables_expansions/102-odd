@@ -1,2 +1,2 @@
 #!/bin/bash
-nl -b a -n ln | grep -E '^[0-9]*[13579].*' | cut -f 2
+nl -b a -n ln | grep -E '^[0-9]+[13579]|^[13579]\s' | cut -f 2
