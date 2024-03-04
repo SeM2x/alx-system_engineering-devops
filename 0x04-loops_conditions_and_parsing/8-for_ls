@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+#Bash script that displays the content of the current directory.
+for file in *
+do
+	if [ "$file" == 'README.md' ]; then
+		echo "$file"
+	else
+		echo "${file:2}"
+	fi
+done
