@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #Bash script that displays Best School 10 times using unitl.
 i=0
-until (( i > 10 ))
+until (( i >= 10 ))
 do
 	echo 'Best School'
 	(( i++ ))
