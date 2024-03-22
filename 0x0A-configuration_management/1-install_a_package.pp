@@ -3,6 +3,14 @@ package { 'python3-pip':
   ensure => installed,
 }
 
-exec {'install_flask':
-  command => '/usr/bin/pip install Flask==2.1.0'
+package {'Werkzeug':
+  ensure   => '2.1.1',
+  provider => 'pip',
+  require  => Package['python3-pip']
+}
+
+package { 'Flask':
+  ensure   => '2.1.0',
+  provider => 'pip',
+  require  => Package['python3-pip'],
 }
