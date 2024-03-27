@@ -3,6 +3,5 @@
 sudo apt -y update
 sudo apt -y install nginx
 sudo sh -c 'echo "Hello World!" > /var/www/html/index.html'
+sudo sed -i '24i\	rewrite ^/redirect_me localhost permanent;' /etc/nginx/sites-available/default
 sudo service nginx start
-sudo sed -i "47i\\	  location /redirect_me {\n                return 301 /;\n        }" /etc/nginx/sites-available/default
-sudo service nginx reload
