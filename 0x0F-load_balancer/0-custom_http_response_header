@@ -6,6 +6,6 @@ sudo sh -c 'echo "Hello World!" > /var/www/html/index.html'
 sudo sed -i '24i\	rewrite ^/redirect_me localhost permanent;' /etc/nginx/sites-available/default
 sudo sh -c 'echo "Ceci n'\''est pas une page\n" > /var/www/html/404.html'
 sudo sed -i "25i\\        error_page 404 /404.html;\n        location = /404.html {\n                root /var/www/html;\n                internal;\n        }" /etc/nginx/sites-available/default
-sudo sed -i "30i\\\n        add_header X-Served-By \"$(hostname)\";" /etc/nginx/sites-available/default
+sudo sed -i "30i\\\n        add_header X-Served-By $(hostname)";" /etc/nginx/sites-available/default
 sudo service nginx start
 sudo service nginx reload
