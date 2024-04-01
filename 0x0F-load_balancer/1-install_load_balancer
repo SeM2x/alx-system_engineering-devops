@@ -11,3 +11,4 @@ backend http_back
     server 522675-web-01 35.174.207.53:80 check
     server 522675-web-02 54.237.227.188:80 check" >> /etc/haproxy/haproxy.cfg
 echo "ENABLED=1" | sudo dd status=none of=/etc/default/haproxy
+sudo service haproxy start
