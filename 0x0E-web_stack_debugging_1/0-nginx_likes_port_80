@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#Script to fix Nginx.
+sudo sed -i "s/8080/80/" /etc/nginx/sites-enabled/default
+sudo service nginx restart
