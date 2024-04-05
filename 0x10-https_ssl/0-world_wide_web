@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+#Displays the record type and the destination of a subdomain
 output() {
 	res=$(dig "$1.semx.tech" | grep -A1 ';; ANSWER SECTION:')
 	dest=$(echo "$res" | awk 'NR == 2 {print $NF}')
