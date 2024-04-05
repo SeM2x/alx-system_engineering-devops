@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+output() {
+	res=$(dig "$1.semx.tech" | grep -A1 ';; ANSWER SECTION:')
+	dest=$(echo "$res" | awk 'NR == 2 {print $NF}')
+	rec=$(echo "$res" | awk 'NR == 2 {print $4}')
+	echo "The subdomain $1 is a $rec record and points to $dest"
+}
+
+if [ -z "$1" ]; then
+	output www
+	output lb-01
+	output web-01
+	output web-02
+else
+	output "$1"
+fi
