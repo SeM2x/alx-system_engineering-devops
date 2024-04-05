@@ -13,5 +13,5 @@ if [ -z "$2" ]; then
 	output "$1" web-01
 	output "$1" web-02
 else
-	output "$1"
+	output "$1" "$2"
 fi
