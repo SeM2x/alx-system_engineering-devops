@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+#Bash script that stops 4-to_infinity_and_beyond process without kill or killall.
+pid=$(pgrep -f 4-to_infinity_and_beyond)
+if (( pid )); then
+	pname=$(cat /proc/"$pid"/comm)
+	pkill "$pname"
+fi
