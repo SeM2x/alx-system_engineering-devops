@@ -15,6 +15,7 @@ def number_of_subscribers(subreddit):
     """
     req = requests.get(
         "https://www.reddit.com/r/{}/about.json".format(subreddit),
+        allow_redirects=False,
         headers={"User-Agent": "Custom"},
     )
 
