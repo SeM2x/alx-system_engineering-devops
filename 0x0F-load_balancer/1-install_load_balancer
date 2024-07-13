@@ -8,8 +8,8 @@ sudo sh -c 'echo "frontend http_front
 
 backend http_back
     balance roundrobin
-    server 522675-web-01 35.174.207.53:80 check
-    server 522675-web-02 54.237.227.188:80 check" >> /etc/haproxy/haproxy.cfg'
+    server 522675-web-01 100.25.163.188:80 check
+    server 522675-web-02 34.203.77.186:80 check" >> /etc/haproxy/haproxy.cfg'
 echo "ENABLED=1" | sudo dd status=none of=/etc/default/haproxy
 sudo service haproxy start
 sudo service haproxy reload
