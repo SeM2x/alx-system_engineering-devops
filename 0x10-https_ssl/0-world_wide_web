@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+#script that prints the ip address of a provided domain
+domain="$1"
+subdomain="$2"
+subdomains=("www" "lb-01" "web-01" "web-02")
+
+if [ -z "$subdomain" ]; then
+	for element in "${subdomains[@]}"; do
+		destination=$(dig "$element"."$domain" | grep -A1 'ANSWER SECTION:' | awk '{print $5}')
+    		type=$(dig "$element"."$domain" | grep -A1 'ANSWER SECTION:' | awk '{print $4}')
+		echo The subdomain "$element" is a $type record and points to $destination
+	done
+else
+	destination=$(dig "$subdomain"."$domain" | grep -A1 'ANSWER SECTION:' | awk '{print $5}')
+	type=$(dig "$subdomain"."$domain" | grep -A1 'ANSWER SECTION:' | awk '{print $4}')
+	echo The subdomain "$subdomain" is a $type record and points to $destination
+fi
