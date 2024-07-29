@@ -11,6 +11,6 @@ if __name__ == "__main__":
     todos = requests.get(url + "/todos", params={"userId": sys.argv[1]}).json()
     data = [[sys.argv[1], user.get('username'), todo.get(
         'completed'), todo.get('title')] for todo in todos]
-    with open('data.csv', mode='w', newline='') as file:
+    with open(sys.argv[1] + '.csv', mode='w', newline='') as file:
         csv_writer = csv.writer(file)
         csv_writer.writerows(data)
