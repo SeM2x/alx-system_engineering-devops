@@ -3,11 +3,11 @@
 for a given employee ID, returns information
 about his/her TODO list progress.
 """
-import requests
-import sys
-
 
 if __name__ == "__main__":
+    import requests
+    import sys
+
     user_id = sys.argv[1]
     try:
         user_url = "https://jsonplaceholder.typicode.com/users/{}".format(
