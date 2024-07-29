@@ -4,13 +4,9 @@ import requests
 import sys
 
 if __name__ == "__main__":
-    user = requests.get(
-        f"https://jsonplaceholder.typicode.com/users/{sys.argv[1]}").json()
-    todos = requests.get(
-        f"https://jsonplaceholder.typicode.com/todos?userId={sys.argv[1]}").json()
-    completed = [todo.get("title")
-                 for todo in todos if bool(todo.get("completed"))]
+    user = requests.get(f"https://jsonplaceholder.typicode.com/users/{sys.argv[1]}").json()
+    todos = requests.get(f"https://jsonplaceholder.typicode.com/todos?userId={sys.argv[1]}").json()
+    completed = [todo.get("title")for todo in todos if bool(todo.get("completed"))]
     print(f"Employee {user.get("name")} is done with tasks({
         len(completed)}/{len(todos)}):")
-    for todo in completed:
-        print('\t', todo)
+    [print('\t', todo) for todo in completed]
