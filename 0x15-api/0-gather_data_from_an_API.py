@@ -1,30 +1,14 @@
 #!/usr/bin/python3
-"""
-for a given employee ID, returns information
-about his/her TODO list progress.
-"""
+"""Returns to-do list information for a given employee ID."""
+import requests
+import sys
 
 if __name__ == "__main__":
-    import requests
-    import sys
+    url = "https://jsonplaceholder.typicode.com/"
+    user = requests.get(url + "users/{}".format(sys.argv[1])).json()
+    todos = requests.get(url + "todos", params={"userId": sys.argv[1]}).json()
 
-    user_id = sys.argv[1]
-
-    user_url = "https://jsonplaceholder.typicode.com/users/{}".format(
-        user_id)
-    user = requests.get(user_url).json()
-    user_name = user.get("name")
-    todos_url = "https://jsonplaceholder.typicode.com/todos?" \
-        "userId={}".format(
-            user_id)
-    todos = requests.get(todos_url).json()
-    tasks = len(todos)
-    done_tasks = 0
-    for todo in todos:
-        if bool(todo.get("completed")):
-            done_tasks += 1
-    print(f"Employee {user_name} is done with tasks({
-        done_tasks}/{tasks}):")
-    for todo in todos:
-        if bool(todo.get("completed")):
-            print('\t', todo.get("title"))
+    completed = [t.get("title") for t in todos if t.get("completed") is True]
+    print("Employee {} is done with tasks({}/{}):".format(
+        user.get("name"), len(completed), len(todos)))
+    [print("\t {}".format(c)) for c in completed]
