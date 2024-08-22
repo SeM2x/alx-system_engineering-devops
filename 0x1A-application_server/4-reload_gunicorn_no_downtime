@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
 # Script that gracefully reloads Gunicorn.
 
-PID=$(pgrep gunicorn)
-kill -s HUP $PID
+sudo ps -eo pid,ppid,cmd | grep '[g]unicorn' | awk '$2 == 1 {print $1}' | xargs -r sudo kill -HUP
