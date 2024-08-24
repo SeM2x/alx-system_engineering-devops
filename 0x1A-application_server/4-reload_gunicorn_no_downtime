@@ -2,4 +2,4 @@
 # Script that gracefully reloads Gunicorn.
 
 PID=$(pgrep gunicorn)
-sudo kill -s -HUP "$PID"
+sudo kill -HUP "$PID"
